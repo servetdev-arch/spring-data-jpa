@@ -1,6 +1,8 @@
 package com.servet.spring_data_jpa_rerun.controller.impl;
 
 import com.servet.spring_data_jpa_rerun.controller.IEmployeeController;
+import com.servet.spring_data_jpa_rerun.dto.DtoEmployee;
+import com.servet.spring_data_jpa_rerun.dto.DtoEmployeeIU;
 import com.servet.spring_data_jpa_rerun.entity.Employee;
 import com.servet.spring_data_jpa_rerun.service.impl.EmployeeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,19 +19,19 @@ public class EmployeeControllerImpl implements IEmployeeController {
 
     @PostMapping("/save")
     @Override
-    public Employee saveEmployee(@RequestBody Employee employee) {
-        return employeeService.saveEmployee(employee);
+    public DtoEmployee saveEmployee(@RequestBody DtoEmployeeIU dtoEmployeeIU) {
+        return employeeService.saveEmployee(dtoEmployeeIU);
     }
 
     @GetMapping("/list")
     @Override
-    public List<Employee> getAllEmployee() {
+    public List<DtoEmployee> getAllEmployee() {
         return employeeService.getAllEmployee();
     }
 
     @GetMapping("/list/{id}")
     @Override
-    public Employee getEmployeeById(@PathVariable(name = "id",required = true) Integer id) {
+    public DtoEmployee getEmployeeById(@PathVariable(name = "id",required = true) Integer id) {
         return employeeService.getEmployeeById(id);
     }
 
@@ -41,7 +43,7 @@ public class EmployeeControllerImpl implements IEmployeeController {
 
     @PutMapping("/update/{id}")
     @Override
-    public Employee updateEmployee(@PathVariable(name = "id") Integer id,@RequestBody Employee updateEmployee) {
-        return employeeService.updateEmployeeById(id,updateEmployee);
+    public DtoEmployee updateEmployee(@PathVariable(name = "id") Integer id,@RequestBody DtoEmployeeIU dtoEmployeeIU) {
+        return employeeService.updateEmployeeById(id,dtoEmployeeIU);
     }
 }

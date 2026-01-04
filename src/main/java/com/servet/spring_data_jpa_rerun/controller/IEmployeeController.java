@@ -1,5 +1,7 @@
 package com.servet.spring_data_jpa_rerun.controller;
 
+import com.servet.spring_data_jpa_rerun.dto.DtoEmployee;
+import com.servet.spring_data_jpa_rerun.dto.DtoEmployeeIU;
 import com.servet.spring_data_jpa_rerun.entity.Employee;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -8,13 +10,13 @@ import java.util.List;
 @RestController
 public interface IEmployeeController {
 
-    public Employee saveEmployee(Employee employee);
+    public DtoEmployee saveEmployee(DtoEmployeeIU dtoEmployeeIU);
 
-    public List<Employee> getAllEmployee();
+    public List<DtoEmployee> getAllEmployee();
 
-    public Employee getEmployeeById(Integer id);
+    public DtoEmployee getEmployeeById(Integer id);
 
     public void deleteEmployee(Integer id);
 
-    public Employee updateEmployee(Integer id , Employee updateEmployee);
+    public DtoEmployee updateEmployee(Integer id , DtoEmployeeIU dtoEmployeeIU);
 }

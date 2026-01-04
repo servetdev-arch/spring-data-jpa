@@ -1,18 +1,20 @@
 package com.servet.spring_data_jpa_rerun.service;
 
+import com.servet.spring_data_jpa_rerun.dto.DtoEmployee;
+import com.servet.spring_data_jpa_rerun.dto.DtoEmployeeIU;
 import com.servet.spring_data_jpa_rerun.entity.Employee;
 
 import java.util.List;
 
 public interface IEmployeeService {
 
-    public Employee saveEmployee(Employee employee);
+    public DtoEmployee saveEmployee(DtoEmployeeIU employee);
 
-    public List<Employee> getAllEmployee();
+    public List<DtoEmployee> getAllEmployee();
 
-    public Employee getEmployeeById(Integer id);
+    public DtoEmployee getEmployeeById(Integer id);
 
     public void deleteEmployeeById(Integer id);
 
-    public Employee updateEmployeeById(Integer id, Employee updateEmployee);
+    public DtoEmployee updateEmployeeById(Integer id, DtoEmployeeIU dtoEmployeeIU);
 }
