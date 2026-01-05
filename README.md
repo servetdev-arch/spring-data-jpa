@@ -14,6 +14,7 @@ It demonstrates basic CRUD operations using PostgreSQL as the database.
 - Maven
 - IntelliJ IDEA
 - Postman
+- 
 
 ## ⚙️ Database Configuration
 
