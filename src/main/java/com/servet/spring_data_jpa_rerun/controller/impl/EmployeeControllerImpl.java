@@ -5,6 +5,7 @@ import com.servet.spring_data_jpa_rerun.dto.DtoEmployee;
 import com.servet.spring_data_jpa_rerun.dto.DtoEmployeeIU;
 import com.servet.spring_data_jpa_rerun.entity.Employee;
 import com.servet.spring_data_jpa_rerun.service.impl.EmployeeServiceImpl;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ public class EmployeeControllerImpl implements IEmployeeController {
 
     @PostMapping("/save")
     @Override
-    public DtoEmployee saveEmployee(@RequestBody DtoEmployeeIU dtoEmployeeIU) {
+    public DtoEmployee saveEmployee(@RequestBody @Valid DtoEmployeeIU dtoEmployeeIU) {
         return employeeService.saveEmployee(dtoEmployeeIU);
     }
 
