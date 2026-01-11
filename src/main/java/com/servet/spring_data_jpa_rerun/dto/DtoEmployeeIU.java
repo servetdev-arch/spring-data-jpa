@@ -1,15 +1,14 @@
 package com.servet.spring_data_jpa_rerun.dto;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
 
 public class DtoEmployeeIU {
 
 
-    @Size(min = 3, max = 20)
+    @Max(value = 10, message = "The first name field can have a maximum of 10 characters.")
+    @Min(value = 3, message = "The first name field can have a minimum of 3 characters.")
     @NotEmpty(message = "First name cannot be empty")
     private String firstName;
 
