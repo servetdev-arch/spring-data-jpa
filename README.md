@@ -15,6 +15,7 @@ It demonstrates basic CRUD operations using PostgreSQL as the database.
 - IntelliJ IDEA
 - Postman
 
+  
 ## ⚙️ Database Configuration
 
 This project **does not include real database credentials** in the repository.
