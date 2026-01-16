@@ -4,10 +4,7 @@ import com.servet.spring_data_jpa_rerun.controller.ICustomerController;
 import com.servet.spring_data_jpa_rerun.dto.DtoCustomer;
 import com.servet.spring_data_jpa_rerun.service.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/rest/api/customer")
@@ -21,4 +18,17 @@ public class CustomerControllerImpl implements ICustomerController {
     public DtoCustomer findCustomerById(@PathVariable(name = "id") Long id) {
         return customerService.findCustomerById(id);
     }
+
+    @PostMapping("/save")
+    @Override
+    public DtoCustomer saveCustomer(@RequestBody DtoCustomer dtoCustomer) {
+        return customerService.saveCustomer(dtoCustomer);
+    }
+
+    @PutMapping("/update/{id}")
+    @Override
+    public DtoCustomer updateCustomer(@PathVariable Long id, @RequestBody DtoCustomer dtoCustomer) {
+        return customerService.updateCustomerById(id, dtoCustomer);
+    }
+
 }

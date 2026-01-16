@@ -1,6 +1,8 @@
 package com.servet.spring_data_jpa_rerun.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class DtoAddress {
 
     private Long id;

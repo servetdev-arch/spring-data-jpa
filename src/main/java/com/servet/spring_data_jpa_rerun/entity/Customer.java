@@ -13,7 +13,7 @@ public class Customer {
     @Column(name = "name")
     private String name;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
     public Customer() {
