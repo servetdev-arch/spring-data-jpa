@@ -3,7 +3,7 @@
 This project is a simple RESTful API built with **Spring Boot**  and **Spring Data JPA**.  
 It demonstrates basic CRUD operations using PostgreSQL as the database.
 
---- 
+---
 
 ## 🚀 Technologies Used
 
