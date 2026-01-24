@@ -1,7 +1,7 @@
 # Spring Data JPA REST API
 
 This project is a simple RESTful API built with **Spring Boot**  and **Spring Data JPA**.  
-It demonstrates basic CRUD operations using PostgreSQL as the database.
+It demonstrates basic CRUD operations using PostgreSQL as the database. 
 
 --- 
 
