@@ -25,4 +25,11 @@ public class HomeControllerImpl implements IHomeController {
     public DtoHome saveHome(@RequestBody DtoHome dtoHome) {
         return homeService.saveHome(dtoHome);
     }
+
+    @PutMapping("/update/{id}")
+    @Override
+    public DtoHome updateHome(@PathVariable(name = "id") Long id,
+                              @RequestBody DtoHome dtoHome) {
+        return homeService.updateHome(id,dtoHome);
+    }
 }

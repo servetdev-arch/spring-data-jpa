@@ -3,6 +3,7 @@ package com.servet.spring_data_jpa_rerun.entity;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,8 +17,9 @@ public class Home {
     @Column(name = "price")
     private BigDecimal price;
 
-    @OneToMany
-    private List<Room> room;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "home_id")
+    private List<Room> room = new ArrayList<>();
 
 
     public Home() {

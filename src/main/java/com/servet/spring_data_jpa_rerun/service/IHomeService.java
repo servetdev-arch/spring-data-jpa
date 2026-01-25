@@ -7,4 +7,6 @@ public interface IHomeService {
     public DtoHome findHomeById(Long id);
 
     public DtoHome saveHome(DtoHome dtoHome);
+
+    public DtoHome updateHome(Long id, DtoHome dtoHome);
 }

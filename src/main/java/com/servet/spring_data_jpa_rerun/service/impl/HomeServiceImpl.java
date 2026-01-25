@@ -9,6 +9,7 @@ import com.servet.spring_data_jpa_rerun.repository.RoomRepository;
 import com.servet.spring_data_jpa_rerun.service.IHomeService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,8 +36,8 @@ public class HomeServiceImpl implements IHomeService {
         Home dbHome = optional.get();
         List<Room> dbRooms = optional.get().getRoom();
         BeanUtils.copyProperties(dbHome, dtoHome);
-        if (dbRooms != null && !dbRooms.isEmpty()){
-            for (Room room : dbRooms){
+        if (dbRooms != null && !dbRooms.isEmpty()) {
+            for (Room room : dbRooms) {
                 DtoRoom dtoRoom = new DtoRoom();
                 BeanUtils.copyProperties(room, dtoRoom);
                 dtoHome.getRooms().add(dtoRoom);
@@ -49,33 +50,65 @@ public class HomeServiceImpl implements IHomeService {
     @Override
     @Transactional
     public DtoHome saveHome(DtoHome dtoHome) {
-        Home home = new Home();
-        BeanUtils.copyProperties(dtoHome,home , "id", "rooms");
 
+        Home home = new Home();
+        BeanUtils.copyProperties(dtoHome, home, "id", "rooms");
         List<Room> roomList = new ArrayList<>();
 
         for (DtoRoom dtoRoom : dtoHome.getRooms()){
             Room room = new Room();
-            BeanUtils.copyProperties(dtoRoom, room, "id");
+            BeanUtils.copyProperties(dtoRoom , room,"id");
             roomList.add(room);
         }
-
-        roomRepository.saveAll(roomList);
         home.setRooms(roomList);
 
-        Home savedHome = homeRepository.save(home);
-
+        Home dbHome = homeRepository.save(home);
         DtoHome response = new DtoHome();
-        BeanUtils.copyProperties(savedHome, response);
+        BeanUtils.copyProperties(dbHome,response);
 
         List<DtoRoom> dtoRoomList = new ArrayList<>();
 
-        for (Room room : savedHome.getRoom()){
-            DtoRoom dtoRoom = new DtoRoom();
-            BeanUtils.copyProperties(room,dtoRoom);
-            dtoRoomList.add(dtoRoom);
+        for (Room room : roomList){
+            DtoRoom dto = new DtoRoom();
+            BeanUtils.copyProperties(room, dto);
+            dtoRoomList.add(dto);
         }
         response.setRooms(dtoRoomList);
+        return response;
+    }
+
+    @Override
+    public DtoHome updateHome(Long id, DtoHome dtoHome) {
+        Home home = homeRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Home not found"));
+
+        BeanUtils.copyProperties(dtoHome,home,"id","rooms");
+
+        home.getRoom().clear();
+
+        List<Room> newRooms = new ArrayList<>();
+        for (DtoRoom dtoRoom : dtoHome.getRooms()){
+            Room room = new Room();
+            BeanUtils.copyProperties(dtoRoom, room, "id");
+            newRooms.add(room);
+        }
+
+        home.getRoom().addAll(newRooms);
+
+        Home updateHome  = homeRepository.save(home);
+
+        DtoHome response = new DtoHome();
+
+        BeanUtils.copyProperties(updateHome,response);
+
+        List<DtoRoom> responseRooms = new ArrayList<>();
+
+        for (Room room : updateHome.getRoom()){
+            DtoRoom dtoRoom = new DtoRoom();
+            BeanUtils.copyProperties(room,dtoRoom);
+            responseRooms.add(dtoRoom);
+        }
+        response.setRooms(responseRooms);
         return response;
     }
 }
