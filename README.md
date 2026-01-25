@@ -4,7 +4,7 @@ This project is a simple RESTful API built with **Spring Boot**  and **Spring Da
 It demonstrates basic CRUD operations using PostgreSQL as the database. 
 
 --- 
-
+ 
 ## 🚀 Technologies Used
 
 - Java 17+
