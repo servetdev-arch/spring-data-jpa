@@ -12,7 +12,7 @@ It demonstrates basic CRUD operations using PostgreSQL as the database.
 - Spring Data JPA (Hibernate)
 - PostgreSQL
 - Maven
-- IntelliJ IDEA
+- IntelliJ IDEA 
 - Postman
 
   
